@@ -1,0 +1,54 @@
+---
+title: "R Notebook changed"
+output: html_notebook
+---
+
+Import data
+
+```{r}
+library(haven)
+mining <- read_sas("http://www.principlesofeconometrics.com/sas/mining.sas7bdat", 
+    NULL)
+```
+
+Wrangle data
+
+```{r}
+
+library(dplyr)
+library(ggplot2)
+
+mining %>%
+ filter(!(YEAR %in% c("1972", "1973"))) %>%
+ filter(QTR %in% "4") 
+
+
+
+```
+
+Visualisation ggplot2
+
+```{r}
+
+p <-
+ ggplot(mining) +
+ aes(x = YEAR, weight = PRO) +
+ geom_bar(fill = "#0c4c8a") +
+ theme_minimal()
+
+p
+
+```
+
+plotly
+
+```{r}
+
+# library(plotly)
+
+
+
+```
+
+
+
